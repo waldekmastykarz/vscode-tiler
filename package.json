@@ -1,0 +1,106 @@
+{
+  "name": "tiler",
+  "displayName": "Tiler",
+  "description": "Quick grid layouts for VS Code editor panes. Perfect for running multiple Copilot chats in parallel.",
+  "version": "0.0.1",
+  "publisher": "waldekmastykarz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/waldekmastykarz/vscode-tiler"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "layout",
+    "grid",
+    "split",
+    "editor",
+    "panes",
+    "tiles",
+    "copilot",
+    "parallel"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tiler.split1x2",
+        "title": "Tiler: Split 1×2 (Side by Side)"
+      },
+      {
+        "command": "tiler.split2x1",
+        "title": "Tiler: Split 2×1 (Stacked)"
+      },
+      {
+        "command": "tiler.split2x2",
+        "title": "Tiler: Split 2×2 Grid"
+      },
+      {
+        "command": "tiler.split3x2",
+        "title": "Tiler: Split 3×2 Grid"
+      },
+      {
+        "command": "tiler.split1x3",
+        "title": "Tiler: Split 1×3 (Three Columns)"
+      },
+      {
+        "command": "tiler.split3x1",
+        "title": "Tiler: Split 3×1 (Three Rows)"
+      },
+      {
+        "command": "tiler.reset",
+        "title": "Tiler: Reset to Single Pane"
+      },
+      {
+        "command": "tiler.focusToggle",
+        "title": "Tiler: Toggle Focus (Maximize/Restore)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "tiler.split1x2",
+        "key": "ctrl+k 2",
+        "mac": "cmd+k 2"
+      },
+      {
+        "command": "tiler.split2x2",
+        "key": "ctrl+k 4",
+        "mac": "cmd+k 4"
+      },
+      {
+        "command": "tiler.split3x2",
+        "key": "ctrl+k 6",
+        "mac": "cmd+k 6"
+      },
+      {
+        "command": "tiler.reset",
+        "key": "ctrl+k 1",
+        "mac": "cmd+k 1"
+      },
+      {
+        "command": "tiler.focusToggle",
+        "key": "ctrl+k f",
+        "mac": "cmd+k f"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2"
+  }
+}
