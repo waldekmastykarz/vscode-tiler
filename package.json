@@ -2,8 +2,9 @@
   "name": "tiler",
   "displayName": "Tiler",
   "description": "Quick grid layouts for VS Code editor panes. Perfect for running multiple Copilot chats in parallel.",
-  "version": "0.0.1",
-  "publisher": "waldekmastykarz",
+  "icon": "icon.png",
+  "version": "0.1.0",
+  "publisher": "waldek",
   "repository": {
     "type": "git",
     "url": "https://github.com/waldekmastykarz/vscode-tiler"
@@ -96,7 +97,7 @@
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
+    "@types/node": "^22",
     "@types/vscode": "^1.85.0",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",

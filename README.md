@@ -1,7 +1,7 @@
 # Tiler
 
-[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/waldekmastykarz.tiler?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=waldekmastykarz.tiler)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/waldekmastykarz.tiler)](https://marketplace.visualstudio.com/items?itemName=waldekmastykarz.tiler)
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/waldek.tiler?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=waldek.tiler)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/waldek.tiler)](https://marketplace.visualstudio.com/items?itemName=waldek.tiler)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Run multiple Copilot chats side by side. Or any editor layout you need — instantly.
@@ -11,7 +11,7 @@ Run multiple Copilot chats side by side. Or any editor layout you need — insta
 ## Install
 
 ```
-ext install waldekmastykarz.tiler
+ext install waldek.tiler
 ```
 
 Or search "Tiler" in the VS Code Extensions view (`Cmd+Shift+X`).
