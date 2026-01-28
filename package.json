@@ -30,12 +30,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "tiler.split1x2",
-        "title": "Tiler: Split 1×2 (Side by Side)"
-      },
-      {
         "command": "tiler.split2x1",
-        "title": "Tiler: Split 2×1 (Stacked)"
+        "title": "Tiler: Split 2×1 (Side by Side)"
       },
       {
         "command": "tiler.split2x2",
@@ -64,7 +60,7 @@
     ],
     "keybindings": [
       {
-        "command": "tiler.split1x2",
+        "command": "tiler.split2x1",
         "key": "ctrl+k 2",
         "mac": "cmd+k 2"
       },

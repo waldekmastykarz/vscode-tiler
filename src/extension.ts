@@ -8,7 +8,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register all commands
   const commands = [
-    vscode.commands.registerCommand('tiler.split1x2', () => applyLayout(1, 2)),
     vscode.commands.registerCommand('tiler.split2x1', () => applyLayout(2, 1)),
     vscode.commands.registerCommand('tiler.split2x2', () => applyLayout(2, 2)),
     vscode.commands.registerCommand('tiler.split3x2', () => applyLayout(3, 2)),
@@ -48,29 +47,22 @@ async function applyLayout(columns: number, rows: number): Promise<void> {
   }
 
   // Now for each column, create the rows
-  // We need to navigate to each column and split it vertically
+  // Navigate to each column's top cell and split it vertically
   if (rows > 1) {
-    // Move to the first (leftmost) editor group
-    await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
-    await sleep(30);
-
     for (let col = 0; col < columns; col++) {
+      // Focus first group then move right to the target column's top cell
+      await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
+      await sleep(30);
+      
+      for (let i = 0; i < col; i++) {
+        await vscode.commands.executeCommand('workbench.action.focusRightGroup');
+        await sleep(30);
+      }
+
       // Split this column into rows
       for (let row = 1; row < rows; row++) {
         await vscode.commands.executeCommand('workbench.action.splitEditorDown');
         await sleep(30);
-      }
-
-      // Move to the next column (if not the last one)
-      if (col < columns - 1) {
-        // Navigate to the top of the next column
-        await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
-        await sleep(30);
-        // Move right to the next column base
-        for (let i = 0; i <= col + 1; i++) {
-          await vscode.commands.executeCommand('workbench.action.focusRightGroup');
-          await sleep(20);
-        }
       }
     }
   }
