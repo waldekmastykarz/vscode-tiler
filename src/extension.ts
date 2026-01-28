@@ -22,13 +22,13 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 /**
- * Apply a grid layout with the specified number of rows and columns.
+ * Apply a grid layout with the specified number of columns and rows.
  * The layout is created by:
  * 1. First closing all editor groups to start fresh
  * 2. Creating the column structure
  * 3. Splitting each column into rows
  */
-async function applyLayout(rows: number, columns: number): Promise<void> {
+async function applyLayout(columns: number, rows: number): Promise<void> {
   // Reset the maximized state when applying a new layout
   isMaximized = false;
 
@@ -78,7 +78,7 @@ async function applyLayout(rows: number, columns: number): Promise<void> {
   // Focus the first editor group
   await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
   
-  vscode.window.showInformationMessage(`Tiler: Applied ${rows}×${columns} layout`);
+  vscode.window.showInformationMessage(`Tiler: Applied ${columns}×${rows} layout`);
 }
 
 /**
