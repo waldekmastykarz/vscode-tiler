@@ -22,10 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 /**
  * Apply a grid layout with the specified number of columns and rows.
- * The layout is created by:
- * 1. First closing all editor groups to start fresh
- * 2. Creating the column structure
- * 3. Splitting each column into rows
+ * Uses vscode.setEditorLayout for proportional sizing that scales with window resize.
  */
 async function applyLayout(columns: number, rows: number): Promise<void> {
   // Reset the maximized state when applying a new layout
@@ -33,39 +30,40 @@ async function applyLayout(columns: number, rows: number): Promise<void> {
 
   // Close all editors in all groups first to get a clean slate
   await vscode.commands.executeCommand('workbench.action.closeAllEditors');
-  
-  // Reset to single editor group
-  await vscode.commands.executeCommand('workbench.action.editorLayoutSingle');
-  
-  // Small delay to let VS Code settle
-  await sleep(50);
 
-  // Create columns first
-  for (let col = 1; col < columns; col++) {
-    await vscode.commands.executeCommand('workbench.action.splitEditorRight');
-    await sleep(30);
+  // Build the layout structure
+  // orientation: 0 = horizontal (columns side by side), 1 = vertical (rows stacked)
+  const columnSize = 1 / columns;
+  const rowSize = 1 / rows;
+
+  interface LayoutGroup {
+    groups?: LayoutGroup[];
+    size: number;
   }
 
-  // Now for each column, create the rows
-  // Navigate to each column's top cell and split it vertically
-  if (rows > 1) {
-    for (let col = 0; col < columns; col++) {
-      // Focus first group then move right to the target column's top cell
-      await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
-      await sleep(30);
-      
-      for (let i = 0; i < col; i++) {
-        await vscode.commands.executeCommand('workbench.action.focusRightGroup');
-        await sleep(30);
-      }
+  const layout: { orientation: number; groups: LayoutGroup[] } = {
+    orientation: 0, // horizontal - columns side by side
+    groups: []
+  };
 
-      // Split this column into rows
-      for (let row = 1; row < rows; row++) {
-        await vscode.commands.executeCommand('workbench.action.splitEditorDown');
-        await sleep(30);
+  for (let col = 0; col < columns; col++) {
+    if (rows === 1) {
+      // Single row - just add a group
+      layout.groups.push({ size: columnSize });
+    } else {
+      // Multiple rows - add a column with nested row groups
+      const rowGroups: LayoutGroup[] = [];
+      for (let row = 0; row < rows; row++) {
+        rowGroups.push({ size: rowSize });
       }
+      layout.groups.push({
+        groups: rowGroups,
+        size: columnSize
+      });
     }
   }
+
+  await vscode.commands.executeCommand('vscode.setEditorLayout', layout);
 
   // Focus the first editor group
   await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
@@ -98,13 +96,6 @@ async function toggleFocus(): Promise<void> {
     isMaximized = true;
     vscode.window.showInformationMessage('Tiler: Maximized current pane');
   }
-}
-
-/**
- * Helper function for timing delays
- */
-function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export function deactivate() {
