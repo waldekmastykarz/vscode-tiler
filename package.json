@@ -3,7 +3,7 @@
   "displayName": "Tiler",
   "description": "Quick grid layouts for VS Code editor panes. Perfect for running multiple Copilot chats in parallel.",
   "icon": "icon.png",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "waldek",
   "repository": {
     "type": "git",
