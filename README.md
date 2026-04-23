@@ -1,7 +1,7 @@
 # Tiler
 
-[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/waldek.tiler?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=waldek.tiler)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/waldek.tiler)](https://marketplace.visualstudio.com/items?itemName=waldek.tiler)
+[![VS Code Marketplace](https://vsmarketplacebadges.dev/version/waldek.tiler.svg)](https://marketplace.visualstudio.com/items?itemName=waldek.tiler)
+[![Installs](https://vsmarketplacebadges.dev/installs-short/waldek.tiler.svg)](https://marketplace.visualstudio.com/items?itemName=waldek.tiler)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Run multiple Copilot chats side by side. Or any editor layout you need — instantly.
